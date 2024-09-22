@@ -1,5 +1,7 @@
 TODO
 - [ ] Follow https://diesel.rs/guides/getting-started
+- [ ] Design args to pass into CLI for various modes
+- [ ] Implement arg designs
 
 Features
 - [ ] Add, remove, edit todos

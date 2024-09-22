@@ -1,5 +1,8 @@
-//! TODO List
+//! Todo List
+
+use clap::Parser;
+use todo::connection::connect;
 
 fn main() {
-    println!("Hello world!");
+    let connection = &mut connect();
 }
