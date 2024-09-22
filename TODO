@@ -1,6 +1,5 @@
 TODO
 - [ ] Follow https://diesel.rs/guides/getting-started
-- [ ] Decide on Rust-based or SQL-based migrations (check Rust help thread I posted)
 
 Features
 - [ ] Add, remove, edit todos
