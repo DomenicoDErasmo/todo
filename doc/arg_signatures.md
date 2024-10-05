@@ -2,13 +2,15 @@
 
 Todo List Workflows
 
-- [ ] Creating a todo list: `todo_list create_list --todo_list "Domenico's Tasks"`
-- [ ] Deleting a todo list: `todo_list delete_list --todo_list "Domenico's Tasks"`
-- [ ] View a todo list: `todo_list view_list --todo_list "Domenico's Tasks"`
+- [ ] List: `todo_list list`
+  - [ ] Create: `todo_list list create "Domenico's Tasks"`
+  - [ ] Delete: `todo_list list delete "Domenico's Tasks"`
+  - [ ] View: `todo_list list view "Domenico's Tasks"`
 
 Task Worflows
 
-- [ ] Adding a task to a todo list: `todo_list add_task_to --todo_list "Domenico's Tasks" --task "Pick medicine up"`
-- [ ] Updating a task on a todo list: `todo_list update_task --task "Pick medicine up" --name "Pick medicine up from CVS" --status "In Progress"`
-- [ ] Removing a task from a todo list: `todo_list remove_task_from --todo_list "Domenico's Tasks" --task "Pick medicine up from CVS"`
-- [ ] Viewing a task on a todo list: `todo_list view_task --todo_list "Domenico'd Tasks" --task "Pick medicine up from CVS"`
+- [ ] Task: `todo_list task`
+  - [ ] Add to list: `todo_list task add --todo_list "Domenico's Tasks" --task "Pick medicine up"`
+  - [ ] Update a task on a list: `todo_list task update --todo_list "Domenico's Tasks" --task "Pick medicine up" --name "Pick medicine up from CVS" --status "In Progress"`
+  - [ ] Remove a task from a list: `todo_list task remove --todo_list "Domenico's Tasks" --task "Pick medicine up from CVS"`
+  - [ ] View a task on a todo list: `todo_list task add --todo_list "Domenico's Tasks" --task "Pick medicine up"`

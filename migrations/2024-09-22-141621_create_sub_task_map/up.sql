@@ -9,6 +9,6 @@ CREATE TABLE sub_task_map(
     sub_task_id INTEGER NOT NULL,
     CONSTRAINT fk_sub_task
         FOREIGN KEY(sub_task_id)
-        REFERENCES task(id)
-
+        REFERENCES task(id),
+    UNIQUE (parent_task_id, sub_task_id)
 )

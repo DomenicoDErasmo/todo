@@ -1,6 +1,7 @@
 //! Structs detailing the tables in our DB.
 
 use crate::schema;
+use crate::schema::todo_list;
 use diesel::pg;
 use diesel::prelude::*;
 
@@ -35,6 +36,13 @@ pub struct SubTaskMap {
 #[diesel(check_for_backend(pg::Pg))]
 pub struct TodoList {
     pub id: i32,
+    pub name: String,
+    pub owner: String,
+}
+
+#[derive(Insertable)]
+#[diesel(table_name=todo_list)]
+pub struct NewTodoList {
     pub name: String,
     pub owner: String,
 }

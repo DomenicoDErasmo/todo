@@ -9,5 +9,6 @@ CREATE TABLE todo_list_task_map (
     task_id INTEGER NOT NULL,
     CONSTRAINT fk_task
         FOREIGN KEY (task_id)
-        REFERENCES task(id)
+        REFERENCES task(id),
+    UNIQUE (todo_list_id, task_id)
 )

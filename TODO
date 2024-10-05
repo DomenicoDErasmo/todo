@@ -1,8 +1,10 @@
-TODO
-- [ ] Follow https://diesel.rs/guides/getting-started
-- [ ] Implement arg designs
+# TODO
+
+- [ ] Follow [Diesel guide](https://diesel.rs/guides/getting-started)
+- [ ] Implement arg designs - [Example](https://github.com/clap-rs/clap/blob/3ef784b516b2c9fbf6adb1c3603261b085561be7/examples/git-derive.rs)
 
 Features
+
 - [ ] Add, remove, edit todos
 - [ ] Mark todos as "done"
-- [ ] Save and load todos 
+- [ ] Save and load todos
