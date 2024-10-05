@@ -28,6 +28,8 @@ pub struct Task {
 #[diesel(table_name=task)]
 pub struct NewTask {
     pub goal: String,
+    pub task_state_id: i32,
+    pub todo_list_id: i32,
 }
 
 #[derive(Queryable, Selectable)]

@@ -39,23 +39,27 @@ pub struct TaskArguments {
 
 #[derive(Debug, Subcommand)]
 pub enum TaskCommands {
-    Add {
+    Create {
         todo_list: String,
+        owner: String,
         task: String,
     },
     // TODO: how to make status be an enum of TaskStatus that gets used by Diesel to populate table?
     Update {
         todo_list: String,
+        owner: String,
         task: String,
         name: Option<String>,
         status: Option<String>,
     },
     Remove {
         todo_list: String,
+        owner: String,
         task: String,
     },
     View {
         todo_list: String,
+        owner: String,
         task: String,
     },
 }
