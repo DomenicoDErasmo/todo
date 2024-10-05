@@ -13,6 +13,7 @@ diesel::table! {
         id -> Int4,
         goal -> Varchar,
         task_state_id -> Int4,
+        todo_list_id -> Int4,
     }
 }
 
@@ -31,22 +32,11 @@ diesel::table! {
     }
 }
 
-diesel::table! {
-    todo_list_task_map (id) {
-        id -> Int4,
-        todo_list_id -> Int4,
-        task_id -> Int4,
-    }
-}
-
 diesel::joinable!(task -> task_state (task_state_id));
-diesel::joinable!(todo_list_task_map -> task (task_id));
-diesel::joinable!(todo_list_task_map -> todo_list (todo_list_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
     sub_task_map,
     task,
     task_state,
     todo_list,
-    todo_list_task_map,
 );

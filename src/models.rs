@@ -1,6 +1,7 @@
 //! Structs detailing the tables in our DB.
 
 use crate::schema;
+use crate::schema::task;
 use crate::schema::todo_list;
 use diesel::pg;
 use diesel::prelude::*;
@@ -20,6 +21,13 @@ pub struct Task {
     pub id: i32,
     pub goal: String,
     pub task_state_id: i32,
+    pub todo_list_id: i32,
+}
+
+#[derive(Insertable)]
+#[diesel(table_name=task)]
+pub struct NewTask {
+    pub goal: String,
 }
 
 #[derive(Queryable, Selectable)]
@@ -45,13 +53,4 @@ pub struct TodoList {
 pub struct NewTodoList {
     pub name: String,
     pub owner: String,
-}
-
-#[derive(Queryable, Selectable)]
-#[diesel(table_name = schema::todo_list_task_map)]
-#[diesel(check_for_backend(pg::Pg))]
-pub struct TodoListTaskMap {
-    pub id: i32,
-    pub todo_list_id: i32,
-    pub task_id: i32,
 }

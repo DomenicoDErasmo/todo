@@ -8,4 +8,5 @@ pub mod models;
 #[allow(clippy::missing_trait_methods)]
 #[allow(clippy::missing_inline_in_public_items)]
 pub mod schema;
+pub mod task;
 pub mod todo_list;
