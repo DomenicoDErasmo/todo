@@ -1,5 +1,7 @@
 //! Structs detailing the tables in our DB.
 
+use core::fmt::Error;
+
 use crate::schema;
 use crate::schema::task;
 use crate::schema::todo_list;
@@ -55,4 +57,48 @@ pub struct TodoList {
 pub struct NewTodoList {
     pub name: String,
     pub owner: String,
+}
+
+pub enum TaskStatus {
+    NotStarted,
+    InProgress,
+    Completed,
+}
+
+impl From<TaskStatus> for i32 {
+    #[inline]
+    fn from(value: TaskStatus) -> Self {
+        match value {
+            TaskStatus::NotStarted => 1,
+            TaskStatus::InProgress => 2,
+            TaskStatus::Completed => 3,
+        }
+    }
+}
+
+// TODO: how to make for better entry on CLI?
+impl From<TaskStatus> for String {
+    #[inline]
+    fn from(value: TaskStatus) -> Self {
+        match value {
+            TaskStatus::NotStarted => "Not Started".to_owned(),
+            TaskStatus::InProgress => "In Progress".to_owned(),
+            TaskStatus::Completed => "Completed".to_owned(),
+        }
+    }
+}
+
+// TODO: how to make for better entry on CLI?
+impl TryFrom<String> for TaskStatus {
+    type Error = Error;
+
+    #[inline]
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        match value.as_str() {
+            "Not Started" => Ok(Self::NotStarted),
+            "In Progress" => Ok(Self::InProgress),
+            "Completed" => Ok(Self::Completed),
+            _ => Err(Error),
+        }
+    }
 }
