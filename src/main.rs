@@ -69,7 +69,15 @@ pub fn db_operation_factory(args: Cli) -> Box<dyn DbOperation> {
                 owner,
                 goal,
             }),
-            _ => todo!(),
+            TaskCommands::Read {
+                todo_list,
+                owner,
+                goal,
+            } => Box::new(task::read::Read {
+                todo_list,
+                owner,
+                goal,
+            }),
         },
     }
 }

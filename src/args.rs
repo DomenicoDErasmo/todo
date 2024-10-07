@@ -57,7 +57,7 @@ pub enum TaskCommands {
         owner: String,
         goal: String,
     },
-    View {
+    Read {
         todo_list: String,
         owner: String,
         goal: String,

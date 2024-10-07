@@ -8,7 +8,7 @@ use crate::schema::todo_list;
 use diesel::pg;
 use diesel::prelude::*;
 
-#[derive(Queryable, Selectable)]
+#[derive(Queryable, Selectable, Debug)]
 #[diesel(table_name = schema::task_state)]
 #[diesel(check_for_backend(pg::Pg))]
 pub struct TaskState {
@@ -16,7 +16,7 @@ pub struct TaskState {
     pub description: String,
 }
 
-#[derive(Queryable, Selectable)]
+#[derive(Queryable, Selectable, Debug)]
 #[diesel(table_name = schema::task)]
 #[diesel(check_for_backend(pg::Pg))]
 pub struct Task {
@@ -43,7 +43,7 @@ pub struct SubTaskMap {
     pub sub_task_id: i32,
 }
 
-#[derive(Queryable, Selectable)]
+#[derive(Queryable, Selectable, Debug)]
 #[diesel(table_name = schema::todo_list)]
 #[diesel(check_for_backend(pg::Pg))]
 pub struct TodoList {
