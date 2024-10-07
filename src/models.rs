@@ -59,6 +59,7 @@ pub struct NewTodoList {
     pub owner: String,
 }
 
+#[derive(Clone, Copy)]
 pub enum TaskStatus {
     NotStarted,
     InProgress,
@@ -72,6 +73,20 @@ impl From<TaskStatus> for i32 {
             TaskStatus::NotStarted => 1,
             TaskStatus::InProgress => 2,
             TaskStatus::Completed => 3,
+        }
+    }
+}
+
+impl TryFrom<i32> for TaskStatus {
+    type Error = Error;
+
+    #[inline]
+    fn try_from(value: i32) -> Result<Self, Self::Error> {
+        match value {
+            1 => Ok(Self::NotStarted),
+            2 => Ok(Self::InProgress),
+            3 => Ok(Self::Completed),
+            _ => Err(Error),
         }
     }
 }

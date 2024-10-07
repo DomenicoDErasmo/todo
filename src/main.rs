@@ -34,7 +34,7 @@ pub fn db_operation_factory(args: Cli) -> Box<dyn DbOperation> {
                 todo_list,
                 owner,
                 task,
-            } => Box::new(task::Create {
+            } => Box::new(task::create::Create {
                 todo_list,
                 owner,
                 task,
@@ -52,11 +52,11 @@ pub fn db_operation_factory(args: Cli) -> Box<dyn DbOperation> {
                             .as_str(),
                     )
                 });
-                Box::new(task::Update {
+                Box::new(task::update::Update {
                     todo_list,
                     owner,
                     task,
-                    name,
+                    goal: name,
                     status: task_status,
                 })
             }
