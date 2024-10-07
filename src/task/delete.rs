@@ -1,22 +1,20 @@
-//! Module for updating a task in some todo list.
+//! Module for deleting a task from some todo list.
 
+use crate::db_operation::DbOperation;
 use crate::models::{Task, TodoList};
 use crate::schema::task::dsl::task;
-use crate::schema::task::{goal, task_state_id, todo_list_id};
+use crate::schema::task::{goal, todo_list_id};
 use crate::schema::todo_list::dsl::todo_list;
 use crate::schema::todo_list::{name, owner};
-use crate::{db_operation::DbOperation, models::TaskStatus};
 use diesel::prelude::*;
 
-pub struct Update {
+pub struct Delete {
     pub todo_list: String,
     pub owner: String,
     pub goal: String,
-    pub new_goal: Option<String>,
-    pub new_status: Option<TaskStatus>,
 }
 
-impl DbOperation for Update {
+impl DbOperation for Delete {
     #[inline]
     fn operate(&self, connection: &mut diesel::PgConnection) {
         let queried_todo_list_id = todo_list
@@ -42,25 +40,10 @@ impl DbOperation for Update {
             .first()
             .expect("Failed to get one task from the query");
 
-        let new_goal = self
-            .new_goal
-            .clone()
-            .unwrap_or_else(|| queried_task.goal.clone());
-        let new_status_id = self
-            .new_status
-            .as_ref()
-            .map_or(queried_task.task_state_id, |status| (*status).into());
+        let num_deleted = diesel::delete(task.find(queried_task.id))
+            .execute(connection)
+            .expect("Error deleting task.");
 
-        let _updated_goal = diesel::update(task.find(queried_task.id))
-            .set(goal.eq(new_goal))
-            .returning(Task::as_returning())
-            .get_result(connection)
-            .expect("Failed to update tasks.");
-
-        let _updated_task_state_id = diesel::update(task.find(queried_task.id))
-            .set(task_state_id.eq(new_status_id))
-            .returning(Task::as_returning())
-            .get_result(connection)
-            .expect("Failed to update tasks.");
+        println!("Deleted {num_deleted} tasks.");
     }
 }
