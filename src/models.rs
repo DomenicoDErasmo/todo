@@ -34,15 +34,6 @@ pub struct NewTask {
     pub todo_list_id: i32,
 }
 
-#[derive(Queryable, Selectable)]
-#[diesel(table_name = schema::sub_task_map)]
-#[diesel(check_for_backend(pg::Pg))]
-pub struct SubTaskMap {
-    pub id: i32,
-    pub parent_task_id: i32,
-    pub sub_task_id: i32,
-}
-
 #[derive(Queryable, Selectable, Debug)]
 #[diesel(table_name = schema::todo_list)]
 #[diesel(check_for_backend(pg::Pg))]
