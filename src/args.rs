@@ -26,8 +26,8 @@ pub struct TodoListArguments {
 #[derive(Debug, Subcommand)]
 pub enum TodoListCommands {
     Create { todo_list: String, owner: String },
-    Delete { todo_list: String },
-    View { todo_list: String, owner: String },
+    Delete { todo_list: String, owner: String },
+    Read { todo_list: String, owner: String },
 }
 
 #[derive(Debug, Args)]

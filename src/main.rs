@@ -25,9 +25,14 @@ pub fn db_operation_factory(args: Cli) -> Box<dyn DbOperation> {
     match args.command {
         Commands::TodoList(commands) => match commands.command {
             TodoListCommands::Create { todo_list, owner } => {
-                Box::new(todo_list::Create { owner, todo_list })
+                Box::new(todo_list::create::Create { owner, todo_list })
             }
-            _ => todo!(),
+            TodoListCommands::Read { todo_list, owner } => {
+                Box::new(todo_list::read::Read { todo_list, owner })
+            }
+            TodoListCommands::Delete { todo_list, owner } => {
+                Box::new(todo_list::delete::Delete { todo_list, owner })
+            }
         },
         Commands::Task(commands) => match commands.command {
             TaskCommands::Create {
